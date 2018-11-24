@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -73,17 +76,17 @@ public class MainActivity extends AppCompatActivity {
 
         boolean checked = ((RadioButton) view).isChecked();
 
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.radio1:
                 if (checked)
                     textView2.setText("Radio button clicked 1");
                 textViewTop.setText("Radio button clicked 1");
-                    break;
+                break;
             case R.id.radio2:
                 if (checked)
                     textView2.setText("Radio button clicked 2");
                 textViewTop.setText("Radio button clicked 2");
-                    break;
+                break;
             case R.id.radio3:
                 if (checked)
                     textView2.setText("Radio button clicked 3");
@@ -91,5 +94,37 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-}
 
+    public void selected(View view) {
+        CheckBox checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
+        CheckBox checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
+        CheckBox checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
+        TextView boxQty = (TextView) findViewById(R.id.checkBoxSelected);
+        boolean box1 = checkBox1.isChecked();
+        boolean box2 = checkBox2.isChecked();
+        boolean box3 = checkBox3.isChecked();
+
+
+//        if (box1 || box2 || box3) {
+//            boxQty.setText("1");
+//        } else if (box1 && box2) {
+//            boxQty.setText("2");
+//        } else if ((box1 && box2 && box3)) {
+//            boxQty.setText("3");
+//        } else
+//            boxQty.setText("0");
+//    }
+
+        if (box1 && box2 && box3) {
+            boxQty.setText("3");
+        } else if ((box1 && box2) || (box1 && box3) || (box2 && box3)) {
+            boxQty.setText("2");
+        } else if (box1 || box2 || box3) {
+            boxQty.setText("1");
+        } else
+            boxQty.setText("0");
+
+    }
+
+
+}
